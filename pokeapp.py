@@ -41,7 +41,7 @@ def main():
         print("No pokemon were added to the team!")
         return 
 
-if __name__ == '__main--':
+if __name__ == '__main__':
     main()
 
 
