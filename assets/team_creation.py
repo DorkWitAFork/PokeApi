@@ -6,7 +6,6 @@ url = "https://pokeapi.co/api/v2"
 
 def getNewTeam() -> Team:
     newTeam = Team()
-    team = {}
 
     while True:
         team_size = input("How many Pokemon do you want on your team (max 6)?: ")
@@ -14,7 +13,6 @@ def getNewTeam() -> Team:
             team_size = input("Error. Please input a number between 1 and 6: ")
         team_size = int(team_size)
         if team_size >= 1 and team_size <= 6:
-            newTeam.setSize(team_size)
             break
         print("Error, you need to have at least one and no more than six!")
 
