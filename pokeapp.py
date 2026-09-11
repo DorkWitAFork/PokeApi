@@ -9,16 +9,15 @@ def main():
 
     
     # Build the team by inputting names of pokemon, which are then looked up.
-    team = getTeam()    
-    print(team)
+    team = getNewTeam()    
+    print(team.getTeam())
 
 
-    print(f"\nAwesome! So your team name is {team["team_name"]}!")
-    print(team)
+    print(f"\nAwesome! So your team name is {team.getName()}!")
 
     print("Wait, what's YOUR name?!")
-    team["trainer_name"] = input("Tell me your name! -> ")
-    print(f"\nGreat, nice to meet you {team["trainer_name"]}!")
+    trainer_name = input("Tell me your name! -> ")
+    print(f"\nGreat, nice to meet you {trainer_name}!")
 
     save = ""
     while save.upper() != "Y" and save.upper() != "N":
