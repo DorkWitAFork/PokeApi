@@ -10,9 +10,10 @@ def getNewTeam() -> Team:
     print("\n~~~ CHOOSE YOUR POKEMON ~~~\n")
 
     team_size = getTeamSize()
-    team = choosePokemon(team, team_size)
-    team = chooseTeamName(team)
-        
+    newTeam = choosePokemon(newTeam, team_size)
+    print(f"Current team: {newTeam.getTeam()}")
+    newTeam = chooseTeamName(newTeam)
+       
     return newTeam
 
 def getTeamSize() -> int:
@@ -42,12 +43,12 @@ def choosePokemon(team : Team, n : int) -> Team:
             print("Request timed out")
         except requests.exceptions.RequestException as e:
             print("Requested failed: ", e)
+    return team
 
 def chooseTeamName(team : Team) -> Team:
     print("Great! Now, what is your team name?")
     name = "" 
-        
-    # get team name and ensure it is alphanumeric. also make sure the name is not too long
+
     while True:
         name = input("Enter your team name: ")
         if len(name) <= 30:
