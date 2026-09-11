@@ -10,8 +10,6 @@ def main():
     
     # Build the team by inputting names of pokemon, which are then looked up.
     team = getNewTeam()    
-    print(team.getTeam())
-
 
     print(f"\nAwesome! So your team name is {team.getName()}!")
 
