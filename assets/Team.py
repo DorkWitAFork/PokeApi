@@ -16,7 +16,7 @@ class Team():
         self.name = name
 
     def add_pokemon(self, pokemon):
-        if self.getSize() >= 6:
+        if self.get_size() >= 6:
             print("Cannot add any pokemon. Team full!")
             return
         self.pokemon.append(pokemon)
