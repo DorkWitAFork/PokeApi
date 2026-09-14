@@ -3,25 +3,25 @@ class Team():
         self.name = ""
         self.pokemon = []
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getTeam(self):
+    def get_team(self):
         return self.pokemon
 
-    def getSize(self):
+    def get_size(self):
         return len(self.pokemon)
 
-    def setName(self, name):
+    def set_name(self, name):
         self.name = name
 
-    def addPokemon(self, pokemon):
+    def add_pokemon(self, pokemon):
         if self.getSize() >= 6:
             print("Cannot add any pokemon. Team full!")
             return
         self.pokemon.append(pokemon)
 
-    def deletePokemon(self, pokemon):
+    def delete_pokemon(self, pokemon):
         if pokemon not in self.pokemon:
             print("Error. Pokemon not on team.")
             return
