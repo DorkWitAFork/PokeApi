@@ -4,19 +4,19 @@ from assets.Team import *
 
 url = "https://pokeapi.co/api/v2"
 
-def getNewTeam() -> Team:
+def get_new_team() -> Team:
     newTeam = Team()
 
     print("\n~~~ CHOOSE YOUR POKEMON ~~~\n")
 
-    team_size = getTeamSize()
-    newTeam = choosePokemon(newTeam, team_size)
+    team_size = get_team_size()
+    newTeam = choose_pokemon(newTeam, team_size)
     print(f"Current team: {newTeam.getTeam()}")
-    newTeam = chooseTeamName(newTeam)
+    newTeam = choose_team_name(newTeam)
        
     return newTeam
 
-def getTeamSize() -> int:
+def get_team_size() -> int:
     while True:
             team_size = input("How many Pokemon do you want on your team (max 6)?: ")
             while not team_size.isdigit():
@@ -27,7 +27,7 @@ def getTeamSize() -> int:
             print("Error, you need to have at least one and no more than six!")
     return team_size
 
-def choosePokemon(team : Team, n : int) -> Team:
+def choose_pokemon(team : Team, n : int) -> Team:
     for i in range(0, n):
         pokemon = str(input(f"Enter your choice for Pokemon #{i+1} (you can enter the name or Pokedex #): "))
             
@@ -45,7 +45,7 @@ def choosePokemon(team : Team, n : int) -> Team:
             print("Requested failed: ", e)
     return team
 
-def chooseTeamName(team : Team) -> Team:
+def choose_team_name(team : Team) -> Team:
     print("Great! Now, what is your team name?")
     name = "" 
 
