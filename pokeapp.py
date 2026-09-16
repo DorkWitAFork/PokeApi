@@ -1,6 +1,6 @@
 import requests
 
-from assets.team_creation import *
+from team_creation import *
 
 def main():
 
@@ -11,7 +11,7 @@ def main():
     # Build the team by inputting names of pokemon, which are then looked up.
     team = get_new_team()    
 
-    print(f"\nAwesome! So your team name is {team.getName()}!")
+    print(f"\nAwesome! So your team name is {team.get_name()}!")
 
     print("Wait, what's YOUR name?!")
     trainer_name = input("Tell me your name! -> ")
@@ -26,8 +26,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-# data = response.json()
-# print(data["name"])

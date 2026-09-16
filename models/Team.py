@@ -1,3 +1,5 @@
+from models.Pokemon import Pokemon
+
 class Team():
     def __init__(self):
         self.name = ""
@@ -7,7 +9,10 @@ class Team():
         return self.name
 
     def get_team(self):
-        return self.pokemon
+        return self.pokemon.copy()
+
+    def get_pokemon_names(self):
+        return [pokemon.name for pokemon in self.pokemon]
 
     def get_size(self):
         return len(self.pokemon)
