@@ -1,5 +1,5 @@
-from assets.Player import Player
-from assets.Team   import Team
+from models.Player import Player
+from models.Team   import Team
 
 def test_add_team_to_player():
     player = Player("Spencer")

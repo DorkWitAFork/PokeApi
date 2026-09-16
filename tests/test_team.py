@@ -1,5 +1,6 @@
-from assets.Team import Team
-from assets.Pokemon import Pokemon
+from models.Team import Team
+from models.Pokemon import Pokemon
+
 
 def test_new_team_is_empty():
     team = Team()

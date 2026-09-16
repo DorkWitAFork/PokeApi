@@ -1,6 +1,6 @@
 import requests
 
-from models.Team import Team 
+from assets.Team import *
 
 url = "https://pokeapi.co/api/v2"
 

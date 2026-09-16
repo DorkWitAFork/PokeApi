@@ -1,4 +1,4 @@
-from models.Team import Team
+from assets.Team import Team
 
 class Player():
 
