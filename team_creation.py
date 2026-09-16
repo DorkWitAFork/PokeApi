@@ -1,6 +1,5 @@
-import requests
-
-from assets.Team import *
+from models.Team import Team 
+from services.pokeapi_services import *
 
 url = "https://pokeapi.co/api/v2"
 
@@ -11,7 +10,7 @@ def get_new_team() -> Team:
 
     team_size = get_team_size()
     newTeam = choose_pokemon(newTeam, team_size)
-    print(f"Current team: {newTeam.getTeam()}")
+    print(f"Current team: {newTeam.get_pokemon_names()}")
     newTeam = choose_team_name(newTeam)
        
     return newTeam
@@ -29,20 +28,15 @@ def get_team_size() -> int:
 
 def choose_pokemon(team : Team, n : int) -> Team:
     for i in range(0, n):
-        pokemon = str(input(f"Enter your choice for Pokemon #{i+1} (you can enter the name or Pokedex #): "))
-            
-        try:
-            response = requests.get(f"{url}/pokemon/{pokemon}", timeout = 10)
-        
-            if response.ok:
-                team.addPokemon(response.json()["name"])
-            else:
-                print(f"Error adding pokemon: {pokemon}. Pokemon not added")
-        
-        except requests.exceptions.Timeout:
-            print("Request timed out")
-        except requests.exceptions.RequestException as e:
-            print("Requested failed: ", e)
+        choice = str(input(f"Enter your choice for Pokemon #{i+1} (you can enter the name or Pokedex #): "))
+
+        pokemon = lookup_pokemon(choice)         
+
+        if pokemon is not None:
+            team.add_pokemon(pokemon)
+        else:
+            print(f"Error adding pokemon: {choice}. Pokemon not added.")
+
     return team
 
 def choose_team_name(team : Team) -> Team:
@@ -55,5 +49,5 @@ def choose_team_name(team : Team) -> Team:
             break
         print("Error, team name too long or special characters used. Try again.")
     
-    team.setName(name)
+    team.set_name(name)
     return team
