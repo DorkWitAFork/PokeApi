@@ -34,7 +34,6 @@ def choose_pokemon(team : Team, n : int) -> Team:
             team.add_pokemon(pokemon)
         else:
             print(f"Error adding pokemon: {choice}. Pokemon not added.")
-
     return team
 
 def choose_team_name(team : Team) -> Team:

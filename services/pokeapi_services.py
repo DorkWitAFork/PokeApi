@@ -14,6 +14,8 @@ def lookup_pokemon(identifier) -> Pokemon | None:
 
     data = response.json()
 
-    pokemon = Pokemon(data["name"],data["id"])
+    learnable_moves = {move_entry["move"]["name"] for move_entry in data["moves"]}
+
+    pokemon = Pokemon(data["name"],data["id"], learnable_moves)
 
     return pokemon
