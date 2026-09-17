@@ -1,21 +1,17 @@
 import requests
 
 from workflows.team_creation import *
+from workflows.player_setup import *
 
 def main():
 
-    print("Welcome to the Pokemon Team Builder!")
+    print("\nWelcome to the Pokemon Team Builder!")
     print("-------------------------------------\n")
 
-    
-    # Build the team by inputting names of pokemon, which are then looked up.
+    player = get_new_player()
     team = get_new_team()    
 
     print(f"\nAwesome! So your team name is {team.get_name()}!")
-
-    print("Wait, what's YOUR name?!")
-    trainer_name = input("Tell me your name! -> ")
-    print(f"\nGreat, nice to meet you {trainer_name}!")
 
     save = ""
     while save.upper() != "Y" and save.upper() != "N":
