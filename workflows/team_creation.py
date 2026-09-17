@@ -1,8 +1,6 @@
 from models.Team import Team 
 from services.pokeapi_services import *
 
-url = "https://pokeapi.co/api/v2"
-
 def get_new_team() -> Team:
     newTeam = Team()
 
