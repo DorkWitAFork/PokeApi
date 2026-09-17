@@ -1,8 +1,6 @@
 from models.Team import Team 
 from services.pokeapi_services import *
 
-url = "https://pokeapi.co/api/v2"
-
 def get_new_team() -> Team:
     newTeam = Team()
 
@@ -36,7 +34,6 @@ def choose_pokemon(team : Team, n : int) -> Team:
             team.add_pokemon(pokemon)
         else:
             print(f"Error adding pokemon: {choice}. Pokemon not added.")
-
     return team
 
 def choose_team_name(team : Team) -> Team:
