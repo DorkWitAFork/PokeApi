@@ -1,6 +1,6 @@
 import requests
 
-from team_creation import *
+from workflows.team_creation import *
 
 def main():
 
