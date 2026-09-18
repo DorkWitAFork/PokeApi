@@ -1,4 +1,5 @@
 from models.Team import Team 
+from models.Pokemon import Pokemon
 from services.pokeapi_services import *
 
 def get_new_team() -> Team:

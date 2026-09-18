@@ -6,37 +6,44 @@ class Pokemon():
         self.moves = [] 
 
     def add_move(self, move) -> bool:
-        if move not in self.learnable_moves:
-            print(f"Error, {self.name} cannot learn {move}!")
+        if not self.move_is_learnable(move):
             return False
 
-        if len(self.moves) < 4:
-            # add the move
-            self.moves.append(move)
-            return True
-
-        print(f"Oops, {self.name} already knows four moves! Do you want to replace an old move?")
-        new_move_choice = ""
-        while new_move_choice.upper() != "Y" and new_move_choice.upper() != "N":
-            new_move_choice = input("(Y/N) -> ")
-
-        if new_move_choice.upper() == "N":
-            return False
-
-        move_to_delete = input(f"Which move do you want to replace? {self.get_moves()}\n -> ")
-
-        if move_to_delete in self.moves:
-            self.delete_move(move)
-            self.moves.append(move)
-            return True            
-        
-    
-    def delete_move(self, move):
-        # check that the move is in the list of moves for the Pokemon
         if move in self.moves:
-            self.moves.remove(move)
-            return
-        # send an error telling the user that the pokemon does not know that move
+            return False
+        
+        if len(self.moves) >= 4:
+            return False 
+
+        self.moves.append(move)
+        return True
+
+    def delete_move(self, move) -> bool:
+        if move not in self.moves:
+            return False 
+
+        self.moves.remove(move)
+        return True 
+
+    def replace_move(self, old_move, new_move) -> bool:
+        if old_move not in self.moves:
+            return False
+
+        if not self.move_is_learnable(new_move):
+            return False
+
+        if new_move in self.moves:
+            return False
+
+        index = self.moves.index(old_move)
+        self.moves[index] = new_move
+        return True  
+
+    def move_is_learnable(self, move) -> bool:
+        return move in self.learnable_moves 
 
     def get_moves(self):
-        return self.moves
+        return self.moves.copy()
+
+    def get_name(self):
+        return self.name
