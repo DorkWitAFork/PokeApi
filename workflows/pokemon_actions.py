@@ -5,13 +5,12 @@ from models.Pokemon import Pokemon
 # 
 
 # functions to validate moves
-def choose_move_for_pokemon(pokemon):
+def choose_move_for_pokemon(pokemon) -> bool:
     move = input("Which move should it learn? ").strip().lower()
-
-    if not pokemon.move_is_learnable(move):
-        print(f"{pokemon.get_name()} cannot learn {move}.")
-        return
 
     if pokemon.add_move(move):
         print(f"{pokemon.get_name()} learned {move}!")
-        return
+        return True
+
+    print(f"{pokemon.get_name()} could not learn {move}.")
+    return False
