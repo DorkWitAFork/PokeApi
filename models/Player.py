@@ -2,7 +2,8 @@ from models.Team import Team
 
 class Player():
 
-    def __init__(self, name):
+    def __init__(self, name: str, player_id: int | None = None):
+        self.id = player_id
         self.name = name
         self.teams = []
 
@@ -17,3 +18,9 @@ class Player():
             return True
         # send an error that the team was unavailable. 
         return False
+
+    def get_name(self):
+        return self.name
+
+    def get_id(self):
+        return self.id
