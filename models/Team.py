@@ -1,5 +1,3 @@
-from models.Pokemon import Pokemon
-
 class Team():
     def __init__(self):
         self.name = ""

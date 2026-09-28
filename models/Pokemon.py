@@ -47,3 +47,6 @@ class Pokemon():
 
     def get_name(self):
         return self.name
+
+    def get_pokedex_id(self):
+        return self.pokedex_id
