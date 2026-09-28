@@ -1,0 +1,28 @@
+[project]
+name = "poke-team-builder"
+version = "0.1.0"
+description = "An interactive Pokemon team builder powered by PokeAPI."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["requests>= 2.32, <3",]
+
+[project.scripts]
+poke-team-builder = "pokeapp:main"
+
+[dependency-groups]
+dev = ["pytest>=9,<10",]
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["pokeapp"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["database", "models", "services*", "workflows*",]
+exclude = ["tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

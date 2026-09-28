@@ -1,18 +1,17 @@
 from models.Team import Team 
-from models.Pokemon import Pokemon
-from services.pokeapi_services import *
+from services.pokeapi_services import PokeApiError, lookup_pokemon 
 
 def get_new_team() -> Team:
-    newTeam = Team()
+    new_team = Team()
 
     print("\n~~~ CHOOSE YOUR POKEMON ~~~\n")
 
     team_size = get_team_size()
-    newTeam = choose_pokemon(newTeam, team_size)
-    print(f"Current team: {newTeam.get_pokemon_names()}")
-    newTeam = choose_team_name(newTeam)
+    new_team = choose_pokemon(new_team, team_size)
+    print(f"Current team: {new_team.get_pokemon_names()}")
+    new_team = choose_team_name(new_team)
        
-    return newTeam
+    return new_team 
 
 def get_team_size() -> int:
     while True:
@@ -25,19 +24,23 @@ def get_team_size() -> int:
             print("Error, you need to have at least one and no more than six!")
     return team_size
 
-def choose_pokemon(team : Team, n : int) -> Team:
-    for i in range(0, n):
-        choice = str(input(f"Enter your choice for Pokemon #{i+1} (you can enter the name or Pokedex #): "))
+def choose_pokemon(team: Team, n: int) -> Team:
+    i = 0
+    while i < n:
+        choice = str(input(f"Enter your choice for Pokemon #{i+1} (you can enter the name or Pokedex #): ")).strip().lower()
+        try:
+            pokemon = lookup_pokemon(choice)
+        except PokeApiError as error:
+            print(f"\nUnable to look up {choice}: {error}")
 
-        pokemon = lookup_pokemon(choice)         
-
-        if pokemon is not None:
-            team.add_pokemon(pokemon)
-        else:
-            print(f"Error adding pokemon: {choice}. Pokemon not added.")
+        if pokemon is None:
+            print(f"Pokemon '{choice}' was not found. Try again.")
+            continue
+        team.add_pokemon(pokemon)
+        i += 1
     return team
 
-def choose_team_name(team : Team) -> Team:
+def choose_team_name(team: Team) -> Team:
     print("Great! Now, what is your team name?")
     name = "" 
 
@@ -49,3 +52,6 @@ def choose_team_name(team : Team) -> Team:
     
     team.set_name(name)
     return team
+
+class TeamCreationCancelled(Exception):
+    pass
